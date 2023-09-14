@@ -1,15 +1,4 @@
 
-/**********************************************************************/
-// ENGR-2350 Final Project
-// Name: Jaden Tompkins, Wenxuan Xie
-// RIN: 662020006, 662031637
-// Section 1, Side A, Seat 14
-// This is the base project for several activities and labs throughout
-// the course.  The outline provided below isn't necessarily *required*
-// by a C program; however, this format is required within ENGR-2350
-// to ease debugging/grading by the staff.
-/**********************************************************************/
-
 #include "engr2350_msp432.h"
 
 void GPIOInit();
