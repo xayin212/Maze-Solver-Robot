@@ -20,15 +20,15 @@ main:
 				set rightflag.0 to true
 			read in ranger value from sensor
 			if this is the first loop:
-				set ranger value to arbitrary "close" number (may 				read in a previous run's last value)
-			if the ranger reads in a deemed far value: (no wall on 			left)
+				set ranger value to arbitrary "close" number (may read in a previous run's last value)
+			if the ranger reads in a deemed far value: (no wall on left)
 				if the rightflag.0 hasn't been triggered:
-					if the leftflag.0 hasn't already been 						triggered:
+					if the leftflag.0 hasn't already been triggered:
 						set the distance of both encoders to 0
 					set leftflag.0 to true
 					turn on red led
 			else:
-				calculate a differential speed based off of the 					desired distance from the wall and current distance
+				calculate a differential speed based off of the desired distance from the wall and current distance
 			calculate the distance that has been traveled
 			--- End taking in inputs from environment ---
 			--- START TURNING CASES --- 
@@ -37,16 +37,16 @@ main:
 					set both motors to drive backwards
 					reset distance of both encoders to 0
 					set rightflag.1 to true
-				else if rightflag.2 isn't true: (reverse for 					distance)
-					if the initial distance to avoid hitting the 					wall has been done:
+				else if rightflag.2 isn't true: (reverse for distance)
+					if the initial distance to avoid hitting the wall has been done:
 						reset distance of both encoders to 0
 						Set left motor to forwards
 						set rightflag.2 to true
 					else:
 						set desired speed
 						set differential speed to 0;
-				else if rightflag.3 isn't true: (Turn right 90 					degrees)
-					if the distance required to make a 90 degree 					angle has been read:
+				else if rightflag.3 isn't true: (Turn right 90 degrees)
+					if the distance required to make a 90 degree angle has been read:
 						set distance to 0
 						set both motors to forwards
 						set rightflag.3 to true:
@@ -57,12 +57,12 @@ main:
 					set rightflag.0, .1, .2, .3 to false
 					set leftflag.0, .1, .2, .3 to false
 			if the leftflag.0 has been triggered:
-				if the leftflag.1 isn't true: (No wall detected to 					the left, drive forwards)
+				if the leftflag.1 isn't true: (No wall detected to the left, drive forwards)
 					if ranger reads less than deemed "far":
 						set rightflag.0, .1, .2, .3 to false
 						set leftflag.0, .1, .2, .3 to false
 						turn off red light
-					else if distance to clear the wall has been 					accomplished:
+					else if distance to clear the wall has been accomplished:
 						set leftflag.1 to true
 						reset distance of both encoders to 0
 						set left motor to backwards
@@ -70,16 +70,16 @@ main:
 					else:
 						set desired speed
 						set differential speed to 0;
-				else if leftflag.2 isn't true: (Turn 90 degrees to 				the left)
-					if the distance required to make a 90 degree 					angle has been read:
+				else if leftflag.2 isn't true: (Turn 90 degrees to the left)
+					if the distance required to make a 90 degree angle has been read:
 						set distance to 0
 						set both motors to forwards
 						set leftflag.2 to true:
 					else:
 						set desired speed
 						set differential speed to 0;
-				else if leftflag.3 isn't true: (drive to start 					detecting the wall again)
-					if the ranger reads a value that is deemed not 					"far" or the car has traveled a distance for 					it to clear the wall and start reading the 					wall again:
+				else if leftflag.3 isn't true: (drive to start detecting the wall again)
+					if the ranger reads a value that is deemed not "far" or the car has traveled a distance for it to clear the wall and start reading the wall again:
 						set left flag to true
 					else:
 						set desired speed
@@ -90,12 +90,12 @@ main:
 			--- END TURNING CASES ---
 			--- Start Wheel Speed Control ---
 			For each wheel: 
-				calculate desired wheel speed as desired speed +/- 				differential speed
+				calculate desired wheel speed as desired speed +/- differential speed
 				if desired wheel speed is less than a minimum:
 					set desired wheel speed to 0
 				else:
-					add "error sum" variable using integral 						control using desired speed and measured speed
-				calculate compare value based on error sum and 					desired speed
+					add "error sum" variable using integral control using desired speed and measured speed
+				calculate compare value based on error sum and desired speed
 				set a maximum and minimum value for compare value
 			apply compare value to each wheel
 			--- End Wheel Speed Control ---
@@ -154,13 +154,13 @@ Encoder ISR function:
 	else if Interrupt was from left encoder:
 		reset interrupt flag
 		add left encoder count
-		Calculate encoder left timing with previous capture count and 		current encoder timer count
+		Calculate encoder left timing with previous capture count and current encoder timer count
 		save a negative current capture count to previous capture count
 		calculate an average speed over 6 encoder counts
 	else if Interrupt was from right encoder:
 		reset interrupt flag
 		add right encoder count
-		Calculate encoder right timing with previous capture count and 		current encoder timer count
+		Calculate encoder right timing with previous capture count and current encoder timer count
 		save a negative current capture count to previous capture count
 		calculate an average speed over 6 encoder counts
 
