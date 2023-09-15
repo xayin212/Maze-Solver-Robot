@@ -1,6 +1,6 @@
 # Maze-Solver-Robot
 
-Contributors: Jaden Tompkins
+Contributors: Jaden Tompkins, Wen Xie
 
 ## Overview
 
